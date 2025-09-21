@@ -11,7 +11,7 @@ dictionary={}
 def shanSpaces(x):
     x = x.replace(" ", "")
     consonants = "ၵၶငၸသၺတထၼပၽၾမယရလဝႁဢ"
-    vowels = ["ၢ","ႃ","e","E","o","r","v","w","ိ","ီ","ု","ူ","ဵ","ႅ","ေ","ႄ","ွ","ႆ"]  # Includes diphthongs, glides
+    vowels = ["ၢ","ႃ","e","E","V","J","o","r","v","w","ိ","ီ","ု","ူ","ဵ","ႅ","ေ","ႄ","ွ","ႆ"]  # Includes diphthongs, glides
     tones = ["ႇ","ႈ","း","ႉ","ႊ"]
     
     x = x.replace(" ", "")  # Remove all spaces
@@ -20,6 +20,8 @@ def shanSpaces(x):
     # Replace special vowel combinations
     x = x.replace("ို", "e")
     x = x.replace("ိူ", "E")
+    x = x.replace("ၢႆ", "J")
+    x = x.replace("ွႆ", "V")
     x = x.replace("ေႃ", "o")
 
     # Handle glides
@@ -76,8 +78,9 @@ def shanSpaces(x):
     
     # Restore original characters
     for i in range(len(words)):
-        words[i] = words[i].replace("e", "ို").replace("E", "ိူ").replace("o", "ေႃ")
-        words[i] = words[i].replace("r", "ြႃ").replace("v", "ႂ်").replace("w", "ႂႃ")
+        words[i] = words[i].replace("e", "ို").replace("E", "ိူ").replace("o", "ေႃ").replace("V","ွႆ")
+        words[i] = words[i].replace("r", "ြႃ").replace("v", "ႂ်").replace("w", "ႂႃ").replace("J","ၢႆ")
+
 
     return words
 
@@ -137,4 +140,5 @@ if __name__=='__main__':
     app.setStyleSheet(qdarkstyle.load_stylesheet('pyside6'))
     win=MainWindow()
     win.show()
+
     app.exec()
